@@ -1,17 +1,23 @@
+import { format } from '@formkit/tempo';
 import { useTranslation } from 'next-i18next';
-import { Todo } from '../hooks';
+import { Todos } from '../hooks';
 import styles from './index.module.scss';
+import { Timezone } from '@/components/App/hooks';
 
 type Props = {
-  todos: Todo[];
+  timezone: Timezone;
+  todos: Todos;
   onComplete: (id: string) => void;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
   isDisabled: (id: string) => boolean;
 };
 
-export function TodoList({ todos, onComplete, onEdit, onDelete, isDisabled }: Props) {
-  const { t } = useTranslation();
+export function TodoList({ timezone, todos, onComplete, onEdit, onDelete, isDisabled }: Props) {
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
 
   return (
     <section className={styles.root}>
@@ -27,7 +33,16 @@ export function TodoList({ todos, onComplete, onEdit, onDelete, isDisabled }: Pr
               onChange={() => onComplete(todo.id)}
             />
             <span>{todo.title}</span>
-            <span>[{todo.deadline}]</span>
+            <span>
+              [
+              {format({
+                date: todo.deadline,
+                format: { date: 'medium', time: 'short' },
+                tz: timezone,
+                locale: language,
+              })}
+              ]
+            </span>
             <div className={styles.actions}>
               <button type="button" className={styles.action} onClick={() => onEdit(todo.id)}>
                 {t('編集')}

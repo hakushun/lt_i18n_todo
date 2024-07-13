@@ -1,8 +1,14 @@
 import { useTranslation } from 'next-i18next';
 import styles from './index.module.scss';
 import { useRouter } from 'next/router';
+import { TIMEZONE, Timezone } from '../App/hooks';
 
-export function Header() {
+type Props = {
+  timezone: Timezone;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+
+export function Header({ timezone, onChange }: Props) {
   const router = useRouter();
 
   const {
@@ -38,10 +44,17 @@ export function Header() {
             <label htmlFor="timezone" className={styles.label}>
               {t('タイムゾーン')}
             </label>
-            <select name="timezone" id="timezone" className={styles.select}>
-              <option value="Tokyo">{t('東京')}</option>
-              <option value="London">{t('ロンドン')}</option>
-              <option value="Caracas">{t('ベネズエラ')}</option>
+            <select
+              name="timezone"
+              id="timezone"
+              className={styles.select}
+              value={timezone}
+              onChange={onChange}>
+              {TIMEZONE.map(({ label, value }) => (
+                <option key={value} value={value}>
+                  {t(label)}
+                </option>
+              ))}
             </select>
           </div>
         </form>

@@ -2,8 +2,13 @@ import { TodoForm } from './TodoForm';
 import { TodoList } from './TodoList';
 import styles from './index.module.scss';
 import { useHooks } from './hooks';
+import { Timezone } from '@/components/App/hooks';
 
-export function Todos() {
+type Props = {
+  timezone: Timezone;
+};
+
+export function Todos({ timezone }: Props) {
   const {
     todo,
     todos,
@@ -14,12 +19,13 @@ export function Todos() {
     handleEdit,
     handleDelete,
     isDisabled,
-  } = useHooks();
+  } = useHooks({ timezone });
 
   return (
     <main className={styles.root}>
       <TodoForm todo={todo} isEdit={isEdit} onChange={handleChange} onSubmit={handleSubmit} />
       <TodoList
+        timezone={timezone}
         todos={todos}
         onComplete={handleComplete}
         onEdit={handleEdit}
