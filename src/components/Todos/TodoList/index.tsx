@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { Todo } from '../hooks';
 import styles from './index.module.scss';
 
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export function TodoList({ todos, onComplete, onEdit, onDelete, isDisabled }: Props) {
+  const { t } = useTranslation();
+
   return (
     <section className={styles.root}>
       <ul className={styles.list}>
@@ -27,14 +30,14 @@ export function TodoList({ todos, onComplete, onEdit, onDelete, isDisabled }: Pr
             <span>[{todo.deadline}]</span>
             <div className={styles.actions}>
               <button type="button" className={styles.action} onClick={() => onEdit(todo.id)}>
-                編集
+                {t('編集')}
               </button>
               <button
                 type="button"
                 className={styles.action}
                 disabled={isDisabled(todo.id)}
                 onClick={() => onDelete(todo.id)}>
-                削除
+                {t('削除')}
               </button>
             </div>
           </li>

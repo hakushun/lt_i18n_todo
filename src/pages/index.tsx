@@ -1,7 +1,14 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import styles from './index.module.scss';
 import { Header } from '@/components/Header';
 import { Todos } from '@/components/Todos';
+
+export async function getStaticProps({ locale }: any) {
+  return {
+    props: await serverSideTranslations(locale, ['common']),
+  };
+}
 
 export default function Home() {
   return (

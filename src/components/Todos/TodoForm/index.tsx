@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { Todo } from '../hooks';
 import styles from './index.module.scss';
 
@@ -9,12 +10,14 @@ type Props = {
 };
 
 export function TodoForm({ todo, isEdit, onChange, onSubmit }: Props) {
+  const { t } = useTranslation();
+
   return (
     <form onSubmit={onSubmit} className={styles.root}>
       <div className={styles.inner}>
         <div className={styles.group}>
           <label htmlFor="title" className={styles.label}>
-            やること
+            {t('やること')}
           </label>
           <input
             type="text"
@@ -27,7 +30,7 @@ export function TodoForm({ todo, isEdit, onChange, onSubmit }: Props) {
         </div>
         <div className={styles.group}>
           <label htmlFor="deadline" className={styles.label}>
-            期日
+            {t('期日')}
           </label>
           <input
             type="datetime-local"
@@ -41,7 +44,7 @@ export function TodoForm({ todo, isEdit, onChange, onSubmit }: Props) {
       </div>
       <div className={styles.actions}>
         <button type="submit" className={styles.action}>
-          {isEdit ? '更新' : '登録'}
+          {isEdit ? t('更新') : t('登録')}
         </button>
       </div>
     </form>
