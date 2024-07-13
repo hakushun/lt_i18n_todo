@@ -1,5 +1,3 @@
-'use client';
-
 import { TodoForm } from './TodoForm';
 import { TodoList } from './TodoList';
 import styles from './index.module.scss';
