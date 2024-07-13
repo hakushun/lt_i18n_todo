@@ -1,0 +1,27 @@
+.root {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #fff;
+}
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.form {
+  display: flex;
+  gap: 1rem;
+}
+.group {
+  display: flex;
+  gap: 0.5rem;
+}
+.label {
+  &::after {
+    content: ":";
+  }
+}
+.select {
+  min-width: 150px;
+}

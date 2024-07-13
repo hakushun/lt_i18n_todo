@@ -1,0 +1,31 @@
+.root {
+  border-top: 1px solid #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-inline: 3rem;
+}
+.list {
+  display: grid;
+  gap: 1rem;
+  max-width: 50rem;
+  padding-block-start: 3rem;
+}
+.item {
+  display: grid;
+  grid-template-columns: auto minmax(20rem, 1fr) auto auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+.actions {
+  display: flex;
+}
+.action {
+  padding: 0.2rem 0.5rem;
+  text-align: center;
+}
