@@ -10,7 +10,8 @@ export function useI18n() {
   } = useTranslation();
 
   function changeLanguage(locale: string) {
-    router.push('/', '/', { locale });
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale });
   }
 
   return {
