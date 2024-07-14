@@ -1,7 +1,9 @@
+import { useI18n } from '@/libs/i18n';
 import { useStore } from '@/store';
 
 export function useHooks() {
   const { todo, isEdit, change, submit } = useStore();
+  const { t } = useI18n();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -18,5 +20,6 @@ export function useHooks() {
     isEdit,
     handleChange,
     handleSubmit,
+    t,
   };
 }

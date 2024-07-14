@@ -1,14 +1,10 @@
 import { format } from '@formkit/tempo';
-import { useTranslation } from 'next-i18next';
 import styles from './index.module.scss';
 import { useHooks } from './hooks';
 
 export function TodoList() {
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation();
-  const { timezone, todos, handleComplete, handleEdit, handleDelete, isDisabled } = useHooks();
+  const { timezone, todos, handleComplete, handleEdit, handleDelete, isDisabled, t, language } =
+    useHooks();
 
   return (
     <section className={styles.root}>

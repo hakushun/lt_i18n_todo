@@ -1,7 +1,9 @@
+import { useI18n } from '@/libs/i18n';
 import { useStore } from '@/store';
 
 export function useHooks() {
   const { timezone, todos, toggleComplete, edit, remove, isDisabled } = useStore();
+  const { t, language } = useI18n();
 
   function handleComplete(id: string) {
     toggleComplete(id);
@@ -22,5 +24,7 @@ export function useHooks() {
     handleEdit,
     handleDelete,
     isDisabled,
+    t,
+    language,
   };
 }

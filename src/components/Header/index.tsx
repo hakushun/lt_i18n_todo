@@ -1,22 +1,9 @@
-import { useTranslation } from 'next-i18next';
 import styles from './index.module.scss';
-import { useRouter } from 'next/router';
 import { TIMEZONE } from '@/store/slices/timezone';
 import { useHooks } from './hooks';
 
 export function Header() {
-  const { timezone, handleChangeTimezone } = useHooks();
-
-  const router = useRouter();
-
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation();
-
-  function handleChangeLanguage(event: React.ChangeEvent<HTMLSelectElement>) {
-    router.push('/', '/', { locale: event.target.value });
-  }
+  const { timezone, handleChangeTimezone, t, language, handleChangeLanguage } = useHooks();
 
   return (
     <header className={styles.root}>

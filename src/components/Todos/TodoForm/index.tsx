@@ -1,10 +1,8 @@
-import { useTranslation } from 'next-i18next';
 import styles from './index.module.scss';
 import { useHooks } from './hooks';
 
 export function TodoForm() {
-  const { t } = useTranslation();
-  const { todo, isEdit, handleChange, handleSubmit } = useHooks();
+  const { todo, isEdit, handleChange, handleSubmit, t } = useHooks();
 
   return (
     <form onSubmit={handleSubmit} className={styles.root}>
