@@ -1,19 +1,13 @@
 import { useTranslation } from 'next-i18next';
-import { Todo } from '../hooks';
 import styles from './index.module.scss';
+import { useHooks } from './hooks';
 
-type Props = {
-  todo: Todo;
-  isEdit: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-};
-
-export function TodoForm({ todo, isEdit, onChange, onSubmit }: Props) {
+export function TodoForm() {
   const { t } = useTranslation();
+  const { todo, isEdit, handleChange, handleSubmit } = useHooks();
 
   return (
-    <form onSubmit={onSubmit} className={styles.root}>
+    <form onSubmit={handleSubmit} className={styles.root}>
       <div className={styles.inner}>
         <div className={styles.group}>
           <label htmlFor="title" className={styles.label}>
@@ -25,7 +19,7 @@ export function TodoForm({ todo, isEdit, onChange, onSubmit }: Props) {
             id="title"
             required
             value={todo.title}
-            onChange={onChange}
+            onChange={handleChange}
           />
         </div>
         <div className={styles.group}>
@@ -38,13 +32,13 @@ export function TodoForm({ todo, isEdit, onChange, onSubmit }: Props) {
             id="deadline"
             required
             value={todo.deadline}
-            onChange={onChange}
+            onChange={handleChange}
           />
         </div>
       </div>
       <div className={styles.actions}>
         <button type="submit" className={styles.action}>
-          {isEdit ? t('更新') : t('登録')}
+          {isEdit() ? t('更新') : t('登録')}
         </button>
       </div>
     </form>
